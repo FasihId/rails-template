@@ -1,4 +1,4 @@
-# rails-tempalte
+# rails-template
 Rails generator with template.
 ## How to Use ?
 - `rails new blog -m rails-template/template.rb -d postgresql`
