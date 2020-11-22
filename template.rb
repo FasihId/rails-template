@@ -26,6 +26,7 @@ gem 'bcrypt', '~> 3.1.7' # # Use Active Model has_secure_password
 # add config file
 file 'config/application.yml', <<-CODE
 AUTH_SECRET: 'yoursecrethere'
+AUTH_EXP_DAY: '1'
 CODE
 
 # remove and copy controllers

@@ -5,8 +5,11 @@ class Auth
   ALGORITHM = 'HS256'
 
   def self.issue(payload)
+    exp = {
+      exp: (Time.now + expired_in.days).to_i
+    }
     JWT.encode(
-      payload,
+      payload.merge!(exp),
       auth_secret,
       ALGORITHM
     )
@@ -19,6 +22,12 @@ class Auth
       true,
       { algorithm: ALGORITHM }
     ).first
+  rescue JWT::ExpiredSignature
+    false
+  end
+
+  def self.expired_in
+    ENV['AUTH_EXP_DAY'].to_i
   end
 
   def self.auth_secret

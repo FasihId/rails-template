@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return false unless auth_present?
+    return false unless auth_present? && auth
 
     user = User.find_by(id: auth['user'])
     @current_user ||= user if user
-    @current_user ||= false
+    @current_user ||= nil
   end
 
   def authenticate

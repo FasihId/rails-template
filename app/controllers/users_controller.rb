@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate, only: [:sign_in, :sign_up]
+  # skip_before_action :authenticate, only: [:sign_in, :sign_up]
+  before_action :authenticate, except: [:sign_in, :sign_up]
 
   def index
     users = User.all
@@ -8,24 +9,21 @@ class UsersController < ApplicationController
 
   def sign_up
     user = User.new(email: user_params[:email], password: user_params[:password])
-    if user.save
-      jwt = Auth.issue({ user: user.id })
-      render json: { jwt: jwt }
-    else
-      render json: { message: 'Your data invalid!' }
-    end
+    return render json: { message: 'Invalid data!' }, status: :unauthorized unless user.save
+
+    token = Auth.issue({ user: user.id })
+    render json: { token: token }, status: :ok
   end
 
   def sign_in
     user = User.find_by(email: user_params[:email])
-    return render json: { msg: 'user not found' } unless user
-
-    if user.authenticate(user_params[:password])
-      jwt = Auth.issue({ user: user.id })
-      render json: { jwt: jwt }
-    else
-      render json: { msg: 'Invalid authentication!' }
+    unless user && user.authenticate(user_params[:password])
+      render json: { message: 'Invalid authentication!' }, status: :unauthorized
+      return
     end
+
+    token = Auth.issue({ user: user.id })
+    render json: { token: token }, status: :ok
   end
 
   def profile
