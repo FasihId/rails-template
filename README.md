@@ -1,14 +1,16 @@
 # rails-template
-Rails generator with template.
+Rails generator with templates.  
+Give extra time to make a cup of coffee :coffee:
+
 ## How to Use ?
-- `rails new blog -m rails-template/template.rb -d postgresql`
+- `rails new yourappname -m rails-template/template.rb -d postgresql`
 
 ## Features Setup
 - [StimulusJs](https://stimulusjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Postgresql](https://www.postgresql.org/)
 - [Heroku](https://www.heroku.com/)
-- Auth : Login, Register, Profile, List User
+- Auth : Login, Register, Profile, List User (please visit : config/routes.rb)
 
 ## Gems
 - [figaro](https://github.com/laserlemon/figaro)
