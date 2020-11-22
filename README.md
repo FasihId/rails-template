@@ -7,6 +7,7 @@ Rails generator with template.
 - [StimulusJs](https://stimulusjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Postgresql](https://www.postgresql.org/)
+- [Heroku](https://www.heroku.com/)
 - Auth : Login, Register, Profile, List User
 
 ## Gems

@@ -86,3 +86,11 @@ if yes?('Would you like to setup TailwinsCSS? (y/n)')
   # EOF
   # end
 end
+
+# heroku
+if yes?('Would you like to setup Heroku? (y/n)')
+  run 'heroku create'
+  copy_file 'Procfile', 'Procfile'
+  copy_file 'deploy_heroku.sh', 'deploy_heroku.sh'
+  run 'chmod +x deploy_heroku.sh'
+end
